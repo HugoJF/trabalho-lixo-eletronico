@@ -71,9 +71,6 @@
                         </li>
                         <li class="active"><a href="{{ route('submit-location') }}">Submeter Local</a></li>
 
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="search" class="hidden-xs"><i class="fa fa-search"></i></a>
-                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if(!Auth::check())
