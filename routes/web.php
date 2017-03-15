@@ -18,6 +18,8 @@
     Route::get('/locais/submeter', 'LocationsController@submitLocationForm')->name('submit-location-form');
     // Location view
     Route::get('/locais/id/{id}', 'LocationsController@view')->name('location-view');
+    // Automatically detect state
+    Route::get('/locais/auto', 'LocationsController@autoListLocations')->name('autoLocations');
     // List locations from state
     Route::get('/locais/{state}', 'LocationsController@listLocations')->name('locations');
     // List current states
@@ -32,4 +34,4 @@
 
 /* #### OTHERS #### */
     Route::get('/dashboard', 'HomeController@dashboard');
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('index');

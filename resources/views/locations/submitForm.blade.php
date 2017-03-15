@@ -13,6 +13,15 @@
                 <div class="panel-body">
                     <form action="{{ route('submit-location') }}" method="POST">
                         {{ csrf_field() }}
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome do Local</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="Nome">
@@ -32,6 +41,7 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Telefone</label>
                             <input type="text" class="form-control bfh-phone" data-format="(dd) dddd-ddddd" id="exampleInputPassword1" name="phone" placeholder="Telefone">
+                            <!-- http://www.jasny.net/bootstrap/javascript/ -->
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Descricao</label>

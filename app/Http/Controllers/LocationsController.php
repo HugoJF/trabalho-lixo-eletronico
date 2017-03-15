@@ -3,11 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Location;
 use Illuminate\Support\Facades\Auth;
+use App\Location;
+use Illuminate\Support\Facades\Config;
+use Torann\GeoIP\Facades\GeoIP;
 
 class LocationsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['submitLocation', 'submitLocationForm']);
+    }
+
+    private function validState($state = null)
+    {
+        return array_key_exists($state, config('static.estados'));
+    }
+
     public function listStates()
     {
         return view('locations.list-states');
@@ -15,6 +27,9 @@ class LocationsController extends Controller
 
     public function listLocations($state = null)
     {
+        if(!$this->validState($state)) {
+            return redirect()->route('locations-all');
+        }
 
         $locations = Location::where('state', $state)->get();
 
@@ -24,6 +39,18 @@ class LocationsController extends Controller
         ]);
     }
 
+    public function autoListLocations()
+    {
+        $state = geoip()->getLocation('187.113.49.215')['state'];
+
+        if($this->validState($state)) {
+            return redirect()->route('locations', ['state' => $state]);
+        } else {
+            return redirect()->route('locations-all');
+        }
+
+    }
+
     public function submitLocationForm()
     {
         return view('locations.submitForm');
@@ -31,6 +58,15 @@ class LocationsController extends Controller
 
     public function submitLocation(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|unique:posts|max:255',
+            'state' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'description' => 'required',
+        ]);
+
         $location = new Location;
 
         $location->fill($request->all());
