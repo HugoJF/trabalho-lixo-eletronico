@@ -37,7 +37,7 @@ class LocationsController extends Controller
 
     public function autoListLocations()
     {
-        $state = geoip()->getLocation('187.113.49.215')['state'];
+        $state = geoip()->getLocation()['state'];
 
         if($this->validState($state)) {
             return redirect()->route('locations', ['state' => $state]);
