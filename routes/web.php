@@ -24,7 +24,7 @@ Route::get('/locais/id/{id}', 'LocationsController@view')->name('location-view')
 // Automatically detect state
 Route::get('/locais/auto', 'LocationsController@autoListLocations')->name('autoLocations');
 // List locations from state
-Route::get('/locais/{state}o', 'LocationsController@listLocations')->name('locations');
+Route::get('/locais/{state}', 'LocationsController@listLocations')->name('locations');
 // List current states
 Route::get('/locais/', 'LocationsController@listStates')->name('locations-all');
 // Submission POST
