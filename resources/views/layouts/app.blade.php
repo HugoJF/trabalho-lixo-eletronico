@@ -1,23 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>@yield('title', 'Lixo Eletrônico')</title>
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
 
-    <link href="{{ asset('/assets/css/bootstrap.css') }}" rel="stylesheet" />
-    <link href="{{ asset('/assets/css/font-awesome.css') }}" rel="stylesheet" />
-    <link href="{{ asset('/assets/css/bootstrap-formhelpers.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/assets/css/bootstrap.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('/assets/css/font-awesome.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('/assets/css/bootstrap-formhelpers.min.css') }}" rel="stylesheet"/>
 
 
-    <link href="{{ asset('/assets/css/gsdk.css') }}" rel="stylesheet" />
-    <link href="{{ asset('/assets/css/demo.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/assets/css/gsdk.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('/assets/css/demo.css') }}" rel="stylesheet"/>
 
     <!--     Font Awesome     -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -60,28 +60,31 @@
                                 <li><a href="{{ url('informacoes/baterias') }}">Baterias</a></li>
                                 <li><a href="{{ url('informacoes/monitores') }}">Monitores</a></li>
                                 <li><a href="{{ url('informacoes/lampadas') }}">Lampadas</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Mais informações</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#gsdk" class="dropdown-toggle" data-toggle="dropdown">Locais <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url('locais/auto') }}">Detectar estado</a></li>
+                                <li><a href="{{ url('locais/auto') }}">Detectar localização</a></li>
                                 <li><a href="{{ url('locais') }}">Lista de estados</a></li>
                                 <li><a href="{{ url('locais/submeter') }}">Submeter novo local</a></li>
                             </ul>
                         </li>
-                        <li class="active"><a href="{{ route('submit-location') }}">Submeter Local</a></li>
+                        <li class="active"><a href="{{ route('future') }}">Objetivos futuros</a></li>
+                        <li class="active"><a href="{{ route('about') }}">Sobre</a></li>
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if(!Auth::check())
-                        <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
 
-                        <li>
-                            <form action="{{ route('login') }}">
-                                <button type="submit" class="btn btn-round btn-default">Sign in</button>
-                            </form>
-                        </li>
+                            <li>
+                                <form action="{{ route('login') }}">
+                                    <button type="submit" class="btn btn-round btn-default">Sign in</button>
+                                </form>
+                            </li>
                         @else
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         @endif
@@ -90,26 +93,26 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-            @if(isset($small) and $small)
-                <div class="blurred-container blurred-container-small">
-            @else
-                <div class="blurred-container">
-            @endif
+        @if(isset($big) and $big)
+            <div class="blurred-container">
+        @else
+            <div class="blurred-container blurred-container-small">
+        @endif
+                <div class="img-src" style="background-image: url('{{ asset('/assets/img/bg.jpg') }}')">
 
-            <div class="img-src" style="background-image: url('{{ asset('/assets/img/bg.jpg') }}')"></div>
-        </div>
+                </div>
+            </div>
     </div><!--  end navbar -->
 
-</div> <!-- end menu-dropdown -->
+    </div> <!-- end menu-dropdown -->
 
-<div class="main">
-    @yield('content')
-    <div class="space">
+    <div class="main">
+        @yield('content')
+        <div class="space">
+        </div>
+        <!-- end container -->
     </div>
-    <!-- end container -->
-</div>
-<!-- end main -->
-
+    <!-- end main -->
 </body>
 
 <script src="{{ asset('/assets/js/jquery-1.10.2.js') }}" type="text/javascript"></script>

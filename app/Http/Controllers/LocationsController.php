@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Location;
-use Illuminate\Support\Facades\Config;
-use Torann\GeoIP\Facades\GeoIP;
 
 class LocationsController extends Controller
 {
@@ -27,9 +25,7 @@ class LocationsController extends Controller
 
     public function listLocations($state = null)
     {
-        if(!$this->validState($state)) {
-            return redirect()->route('locations-all');
-        }
+        if(!$this->validState($state)) return redirect()->route('locations-all');
 
         $locations = Location::where('state', $state)->get();
 
@@ -59,7 +55,7 @@ class LocationsController extends Controller
     public function submitLocation(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:posts|max:255',
+            'name' => 'required',
             'state' => 'required',
             'city' => 'required',
             'address' => 'required',
@@ -77,5 +73,14 @@ class LocationsController extends Controller
 
         //return redirect()->route('location-view', ['id' => $location->id]);
         return redirect()->route('locations', ['state' => $request->input('state')]);
+    }
+
+    public function view($id = null)
+    {
+        if($id === null) return redirect()->route('index');
+
+        return view('locations.view', [
+            'location' => Location::find($id),
+        ]);
     }
 }

@@ -22,6 +22,16 @@ class CreateLocationsTable extends Migration
             $table->string('city');
             $table->string('state');
 
+            $table->boolean('monitores-televisores-lcd');
+            $table->boolean('monitores-televisores-crt');
+            $table->boolean('lampadas');
+            $table->boolean('pilhas-baterias');
+            $table->boolean('toners');
+            $table->boolean('impressoras');
+            $table->boolean('computadores');
+            $table->boolean('celulares');
+            $table->boolean('cameras-fotograficas');
+
             $table->integer('user_id')->index()->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
