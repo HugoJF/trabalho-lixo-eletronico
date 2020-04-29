@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/vagrant/Code/lixoeletronico":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/Code/lixoeletronico","hostpath":"C:/lixo-eletronico","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/lixo-eletronico","disabled":false,"__vagrantfile":true}}}
